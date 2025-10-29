@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Riya Sen",
+        "start_time": "2025-11-01T09:30:00",
+        "end_time": "2025-11-01T10:00:00"
+    },
+    {
+        "name": "Amit Mehta",
+        "start_time": "2025-11-01T14:30:00",
+        "end_time": "2025-11-01T15:00:00"
+    },
+    {
+        "name": "Neha Shah",
+        "start_time": "2025-11-02T11:00:00",
+        "end_time": "2025-11-02T11:30:00"
+    },
+    {
+        "name": "Rahul Kumar",
+        "start_time": "2025-11-01T15:00:00",
+        "end_time": "2025-11-01T15:30:00"
+    },
+    {
+        "name": "Amit Patel",
+        "start_time": "2025-11-05T09:00:00",
+        "end_time": "2025-11-05T09:30:00"
+    },
+    {
+        "name": "Last Slot User",
+        "start_time": "2025-10-30T17:30:00",
+        "end_time": "2025-10-30T18:00:00"
+    }
+]
