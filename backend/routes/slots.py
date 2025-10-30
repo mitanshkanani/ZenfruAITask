@@ -1,6 +1,6 @@
 # backend/routes/slots.py
 from fastapi import APIRouter, HTTPException, Query
-from backend.utils.slot_utils import get_available_slots
+from utils.slot_utils import get_available_slots
 
 router = APIRouter()
 

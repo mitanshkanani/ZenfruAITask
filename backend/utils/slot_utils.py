@@ -1,7 +1,7 @@
 # backend/utils/slot_utils.py
 import json
 from datetime import datetime, timedelta
-from backend.utils.file_utils import read_json_file
+from utils.file_utils import read_json_file
 
 LUNCH_START = "13:00"
 LUNCH_END = "14:00"
