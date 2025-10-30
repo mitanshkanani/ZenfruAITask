@@ -13,9 +13,6 @@ class BookingRequest(BaseModel):
 
 @router.post("/log_booking")
 async def log_booking(booking: BookingRequest):
-    """
-    Logs a booking to appointments.json
-    """
     try:
         appointments = read_json_file("backend/data/appointments.json")
 
@@ -41,13 +38,27 @@ async def log_booking(booking: BookingRequest):
         start_dt = datetime.fromisoformat(start_dt_str)
         end_dt = start_dt + timedelta(minutes=30)
 
+        # --- Check for conflicts ---
+        for appt in appointments:
+            # Only check same doctor
+            if appt.get("doctor") != booking.doctor:
+                continue
+
+            existing_start = datetime.fromisoformat(appt["start_time"])
+            existing_end = datetime.fromisoformat(appt["end_time"])
+
+            # If requested slot overlaps with existing
+            if (start_dt < existing_end and end_dt > existing_start):
+                raise HTTPException(status_code=400, detail="Slot already booked")
+
+        # No conflicts → log appointment
         new_appt = {
             "name": booking.name,
+            "doctor": booking.doctor,
             "start_time": start_dt.isoformat(),
             "end_time": end_dt.isoformat()
         }
         appointments.append(new_appt)
-
         write_json_file("backend/data/appointments.json", appointments)
 
         print(f"📅 New booking logged: {new_appt}")
@@ -57,5 +68,7 @@ async def log_booking(booking: BookingRequest):
             "appointment": new_appt
         }
 
+    except HTTPException as he:
+        raise he
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
