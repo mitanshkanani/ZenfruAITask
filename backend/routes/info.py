@@ -1,6 +1,6 @@
 # backend/routes/info.py
 from fastapi import APIRouter, Query, HTTPException
-from utils.file_utils import read_json_file
+from backend.utils.file_utils import read_json_file
 
 router = APIRouter()
 
